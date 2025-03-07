@@ -14,8 +14,6 @@ from datetime import timedelta
 import os
 from pathlib import Path
 import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -78,6 +76,15 @@ CLOUDINARY_STORAGE = {
 }
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+# For production we have to configure the cloudinary object
+# cloudinary.config(
+#     cloud_name=CLOUDINARY_STORAGE["CLOUD_NAME"],
+#     api_key=CLOUDINARY_STORAGE["API_KEY"],
+#     api_secret=CLOUDINARY_STORAGE["API_SECRET"],
+#     api_proxy=os.getenv("https_proxy", "http://proxy.server:3128"),  # Use PythonAnywhere's proxy
+#     secure=True
+# )
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
